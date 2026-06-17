@@ -1,3 +1,4 @@
+#include <iostream>
 #include <FL/Fl.H>
 #include <FL/Fl_Window.H>
 #include <FL/Fl_Box.H>
@@ -24,8 +25,9 @@ void on_about(Fl_Widget*, void*) {
 	fl_message("This is an FLTK Hello World example");
 }
 
-int main() {
-	Fl::scheme("gleam");
+int main(int argc, char** argv) {
+	Fl::args(argc, argv);
+	// Fl::scheme("gleam");
 	win = new Fl_Window(400, 300, "Hello World");
 
 	Fl_Menu_Bar* menu = new Fl_Menu_Bar(0, 0, 400, 25);
@@ -33,7 +35,7 @@ int main() {
 	menu->add("&File/&Exit",         0, on_exit);
 	menu->add("&Help/&About",        0, on_about);
 
-	Fl_Box* main_label = new Fl_Box(30, 30, 60, 60, "This is a test text label!");
+	// Fl_Box* main_label = new Fl_Box(30, 30, 60, 60, "This is a test text label!");
 
 	win->end();
 	win->show();
