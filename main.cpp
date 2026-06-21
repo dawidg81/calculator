@@ -170,6 +170,10 @@ int main(int argc, char** argv) {
 	calc_button_equals->callback(on_equals);
 	calc_button_decimal->callback(on_decimal);
 
+	static char op_add = '+';
+	static char op_subtract = '-';
+	static char op_multiply = '*';
+	static char op_divide = '/';
 	Fl_Button *calc_button_add = new Fl_Button(220, 110, 60, 30, "+");
 	Fl_Button *calc_button_subtract = new Fl_Button(220, 150, 60, 30, "-");
 	Fl_Button *calc_button_multiplicate = new Fl_Button(220, 190, 60, 30, "*");
