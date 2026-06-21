@@ -6,11 +6,67 @@
 #include <FL/Fl_Text_Display.H>
 #include <FL/fl_ask.H>
 
+#include <string>
+#include <cmath>
+
+/// GLOBAL STATE
+
+float number1 = 0;
+float number2 = 0;
+char current_operator = '\0';
+std::string current_input = "";
+Fl_Text_Buffer *main_buffer;
+Fl_Text_Display *main_display;
+
 void on_hello(Fl_Widget*, void*);
 void on_exit(Fl_Widget*, void*);
 void on_about(Fl_Widget*, void*);
 
 Fl_Window* win;
+
+// Display helper and calculator logic
+
+void update_display(const std::string& text) {
+	main_buffer->text(text.c_str());
+}
+
+float calculate(float num1, float num2, char op) {
+	switch (op) {
+		case '+': return num1 + num2;
+		case '-': return num1 - num2;
+		case '*': return num1 * num2;
+		case '/':
+			  if (num2 == 0) {
+				  fl_alert("Cannot divide by zero!");
+				  return 0;
+			  }
+			  return num1 / num2;
+		default: return num2;
+	}
+}
+
+// Button events
+
+void on_number_button(Fl_Widget*, void* data) {
+	const char* num = (const char* data);
+	current_input += num;
+	update_display(current_input);
+}
+
+void on_operator_button(Fl_Widget*, void* data) {
+	char op = *(char*)data;
+
+	if (current_operator != '\0' && !current_input.empty()) {
+		number2 = std::stof(current_input);
+		float result = calculate(number1, number2, current_operator);
+		number1 = result;
+		current_input = std::to_string(result);
+
+		current_input.erase(current_input.find_last_not_of('0') + 1, std::string::npos);
+	}
+}
+
+// Menu events
 
 void on_exit(Fl_Widget*, void*) {
 	win->hide();
@@ -58,9 +114,6 @@ int main(int argc, char** argv) {
 	Fl_Button *calc_button_subtract = new Fl_Button(220, 150, 60, 30, "-");
 	Fl_Button *calc_button_multiplicate = new Fl_Button(220, 190, 60, 30, "*");
 	Fl_Button *calc_button_divide = new Fl_Button(220, 230, 60, 30, "/");
-
-	/// DISPLAY BOX
-	Fl_Text_Display *main_display = new Fl_Text_Display(10, 35, 380, 70, 0);
 
 	win->end();
 	win->show();
