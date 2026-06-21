@@ -65,12 +65,11 @@ void on_operator_button(Fl_Widget*, void* data) {
 		current_input.erase(current_input.find_last_not_of('0') + 1, std::string::npos);
 
 		if (current_input.back() == '.') current_input.pop_back();
-		else if (!current_input.empty()) number1 = std::stof(current_input);
+	} else if (!current_input.empty()) number1 = std::stof(current_input);
 
-		current_operator = op;
-		current_input = "";
-		update_display("0");
-	}
+	current_operator = op;
+	current_input = "";
+	update_display("0");
 }
 
 void on_equals(Fl_Widget*, void*) {
@@ -97,7 +96,7 @@ void on_clear(Fl_Widget*, void*) {
 	current_operator = '\0';
 	current_input = "";
 
-	update_display(0);
+	update_display("0");
 }
 
 void on_decimal(Fl_Widget*, void*) {
@@ -139,7 +138,7 @@ int main(int argc, char** argv) {
 	main_buffer = new Fl_Text_Buffer();
 	main_display = new Fl_Text_Display(10, 35, 380, 70, 0);
 	main_display->buffer(main_buffer);
-	update_display("");
+	update_display("0");
 
 	/// CALCULATOR BUTTONS
 	Fl_Button *calc_button1 = new Fl_Button(10, 150, 60, 30, "1");
@@ -165,7 +164,7 @@ int main(int argc, char** argv) {
 
 	Fl_Button *calc_button_clear = new Fl_Button(10, 110, 60, 30, "C");
 	Fl_Button *calc_button_equals = new Fl_Button(220, 270, 60, 30, "=");
-	Fl_Button *calc_button_decimal = new Fl_Button(230, 270, 60, 30, ".");
+	Fl_Button *calc_button_decimal = new Fl_Button(150, 110, 60, 30, ".");
 	calc_button_clear->callback(on_clear);
 	calc_button_equals->callback(on_equals);
 	calc_button_decimal->callback(on_decimal);
