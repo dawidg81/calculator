@@ -48,7 +48,7 @@ float calculate(float num1, float num2, char op) {
 // Button events
 
 void on_number_button(Fl_Widget*, void* data) {
-	const char* num = (const char* data);
+	const char* num = (const char*)data;
 	current_input += num;
 	update_display(current_input);
 }
