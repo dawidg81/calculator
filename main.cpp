@@ -39,7 +39,20 @@ int main(int argc, char** argv) {
 	menu->add("&Help/&About",        0, on_about);
 	menu->add("&Help/&Usage",        0, on_usage);
 
-	Fl_Button *test_button = new Fl_Button(60, 60, 60, 30, "Test!");
+	/// CALCULATOR BUTTONS
+	Fl_Button *calc_button1 = new Fl_Button(10, 170, 60, 30, "1");
+	Fl_Button *calc_button2 = new Fl_Button(80, 170, 60, 30, "2");
+	Fl_Button *calc_button3 = new Fl_Button(150, 170, 60, 30, "3");
+
+	Fl_Button *calc_button4 = new Fl_Button(10, 210, 60, 30, "4");
+	Fl_Button *calc_button5 = new Fl_Button(80, 210, 60, 30, "5");
+	Fl_Button *calc_button6 = new Fl_Button(150, 210, 60, 30, "6");
+
+	Fl_Button *calc_button7 = new Fl_Button(10, 250, 60, 30, "7");
+	Fl_Button *calc_button8 = new Fl_Button(80, 250, 60, 30, "8");
+	Fl_Button *calc_button9 = new Fl_Button(150, 250, 60, 30, "9");
+
+	Fl_Button *calc_button0 = new Fl_Button(80, 290, 60, 30, "0");
 
 	win->end();
 	win->show();
